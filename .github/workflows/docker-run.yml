@@ -1,0 +1,20 @@
+name: Run Docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-docker:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download docker image
+        run: docker pull davidjesus/senai-tdt:latest
+
+      - name: Remove all container
+        run: docker container rm -f $(docker container ps -a -q) || echo "Nenhum container"
+
+      - name: Run container
+        run: docker run -d -p 8080:80 --name webserver davidjesus/senai-tdt:latest
