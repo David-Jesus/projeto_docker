@@ -11,10 +11,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download docker image
-        run: docker pull <usuario-docker-hub>/senai-tdt:latest
+        run: docker pull davidjesus/senai-tdt:latest
 
       - name: Remove all container
         run: docker container rm -f $(docker container ps -a -q) || echo "Nenhum container"
 
       - name: Run container
-        run: docker run -d -p 8080:80 --name webserver <usuario-docker-hub>/senai-tdt:latest
+        run: docker run -d -p 8080:80 --name webserver davidjesus/senai-tdt:latest
